@@ -1,0 +1,24 @@
+diff --git a/node_modules/@remix-run/dev/dist/compiler/js/compiler.js b/node_modules/@remix-run/dev/dist/compiler/js/compiler.js
+index 8e1c8a1..b8cf031 100644
+--- a/node_modules/@remix-run/dev/dist/compiler/js/compiler.js
++++ b/node_modules/@remix-run/dev/dist/compiler/js/compiler.js
+@@ -31,6 +31,9 @@ var vanillaExtract = require('../plugins/vanillaExtract.js');
+ var invariant = require('../../invariant.js');
+ var hmr = require('./plugins/hmr.js');
+ var analysis = require('../analysis.js');
++var nodeGlobalsPolyfill = require("@esbuild-plugins/node-globals-polyfill");
++var nodeModulesPolyfill = require("@esbuild-plugins/node-modules-polyfill");
++
+ 
+ function _interopNamespace(e) {
+   if (e && e.__esModule) return e;
+@@ -77,7 +80,8 @@ const createEsbuildConfig = (ctx, refs) => {
+   if (fakeBuiltins.length > 0) {
+     throw new Error(`It appears you're using a module that is built in to Node, but you installed it as a dependency which could cause problems. Please remove ${fakeBuiltins.join(", ")} before continuing.`);
+   }
+-  let plugins = [routes.browserRouteModulesPlugin(ctx, /\?browser$/), cssBundlePlugin.cssBundlePlugin(refs), cssModuleImports.cssModulesPlugin(ctx, {
++  let plugins = [nodeGlobalsPolyfill.NodeGlobalsPolyfillPlugin(),
++    nodeModulesPolyfill.NodeModulesPolyfillPlugin(),routes.browserRouteModulesPlugin(ctx, /\?browser$/), cssBundlePlugin.cssBundlePlugin(refs), cssModuleImports.cssModulesPlugin(ctx, {
+     outputCss: false
+   }), vanillaExtract.vanillaExtractPlugin(ctx, {
+     outputCss: false

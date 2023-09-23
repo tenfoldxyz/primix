@@ -1,0 +1,19 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model PushSubscription {
+  id              String  @id @default(cuid())
+  endpoint        String
+  expirationTime  String?
+  p256dh          String
+  auth            String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId String
+}
