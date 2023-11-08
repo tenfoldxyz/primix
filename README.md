@@ -7,7 +7,7 @@
 ## What's in the stack
 
 - Wallet and Social Authentication with [Privy](https://privy.io)
-- Progress Web App with [Remix PWA](https://github.com/remix-pwa/remix-pwa)
+- Progressive Web App with [Remix PWA](https://github.com/remix-pwa/remix-pwa)
 - [Multi-region Fly app deployment](https://fly.io/docs/reference/scaling/) with [Docker](https://www.docker.com/)
 - [Multi-region Fly PostgreSQL Cluster](https://fly.io/docs/getting-started/multi-region-databases/)
 - Healthcheck endpoint for [Fly backups region fallbacks](https://fly.io/docs/reference/configuration/#services-http_checks)
